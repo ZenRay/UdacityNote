@@ -1,0 +1,2 @@
+"0","check1 <- sum(mtcars$mpg > 23)"
+"0","check2 <- dim(mtcars[mtcars$mpg>23, ])"

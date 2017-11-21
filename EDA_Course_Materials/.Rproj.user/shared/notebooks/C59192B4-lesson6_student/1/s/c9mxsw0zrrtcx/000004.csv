@@ -1,0 +1,6 @@
+"0","library(gridExtra)"
+"0","plot1 <- qplot(x=price, data=diamonds) + "
+"0","  ggtitle('Price')"
+"0","plot2 <- qplot(x=log(price), data=diamonds) +"
+"0","  ggtitle('Price (log10)')"
+"0","grid.arrange(plot1, plot2, ncol=1)"

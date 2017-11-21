@@ -1,0 +1,322 @@
+Lesson 5
+========================================================
+
+### Multivariate Data
+Notes:
+
+***
+
+```{r}
+library(ggplot2)
+library(dplyr)
+```
+### Moira Perceived Audience Size Colored by Age
+Notes:
+有时候分析方向会出错
+***
+
+### Third Qualitative Variable
+Notes:
+
+```{r Third Qualitative Variable}
+pf <- read.csv("../lesson3/pseudo_facebook.tsv", sep="\t")
+ggplot(aes(x = gender, y = age),data = subset(pf, !is.na(gender))) + geom_boxplot()
+```
+
+***
+
+### Plotting Conditional Summaries
+Notes:
+
+```{r Plotting Conditional Summaries}
+ggplot(aes(x=gender, y=age), data=subset(pf, !is.na(gender))) +
+  geom_boxplot() +
+  stat_summary(fun.y=mean, geom="point", shape=4)
+```
+
+***
+
+```{r}
+pf.fc_by_age_gender <- pf %>%
+    filter(!is.na(gender)) %>%
+    group_by(age, gender) %>%
+    summarise(mean_friend_count=mean(friend_count), median_friend_count=median(friend_count), n=n())
+head(pf.fc_by_age_gender)
+```
+
+```{r condition plot}
+ggplot(aes(x=age, y=median_friend_count), data=subset(pf.fc_by_age_gender, !is.na(gender))) + geom_line(aes(color=gender))
+```
+### Thinking in Ratios
+Notes:中位数中，男性用户的数量比女性用户少，至少在60岁之前。在之后的数据波动较大
+
+***
+
+### Wide and Long Format
+Notes:
+
+***
+
+### Reshaping Data
+Notes:
+
+```{r}
+library(reshape2)
+pf.fc_by_age_gender.wide <- dcast(pf.fc_by_age_gender, age~gender, value.var = "median_friend_count")
+```
+
+
+***
+
+### Ratio Plot
+Notes:
+
+```{r Ratio Plot}
+ggplot(aes(x=age, y=female/male), data=pf.fc_by_age_gender.wide) +
+  geom_line() +
+  geom_hline(yintercept=1, alpha=.4, linetype=4)
+```
+
+***
+
+### Third Quantitative Variable
+Notes:
+可以使用with方法， pf$year_joined<-with(pf, floor(2014-tenure/365))
+```{r Third Quantitative Variable}
+pf$year_joined <- floor(2014 -pf$tenure/365)
+```
+
+***
+
+### Cut a Variable
+Notes:
+[cut方法](https://www.r-bloggers.com/r-function-of-the-day-cut-2/)
+```{r Cut a Variable}
+pf$year_joined.bucket <- cut(pf$year_joined, breaks=c(2004, 2009, 2011, 2012, 2014))
+```
+
+***
+
+### Plotting it All Together
+Notes:证实了一点，因为加入时间的不同，对朋友数量还是有差异的
+
+```{r Plotting it All Together}
+ggplot(aes(x=age, y=friend_count), data=subset(pf, !is.na(year_joined.bucket))) +
+  geom_line(aes(color=year_joined.bucket), stat="summary", fun.y=median)
+```
+
+***
+
+### Plot the Grand Mean
+Notes:
+更加强体现了使用时长对用户数量的影响
+```{r Plot the Grand Mean}
+ggplot(aes(x=age, y=friend_count), data=subset(pf, !is.na(year_joined.bucket))) +
+geom_line(aes(color=year_joined.bucket), stat="summary", fun.y=mean, linetype=1) +
+geom_line(stat="summary", fun.y=mean, linetype=5)
+```
+
+***
+
+### Friending Rate
+Notes:从最大值中显示每天有加入朋友数量为417人，存在异常值
+
+```{r Friending Rate}
+with(subset(pf, tenure>=1), summary(friend_count/tenure))
+```
+```{r different year joined}
+ggplot(aes(x=tenure, y=friendships_initiated), data=subset(pf, !is.na(year_joined.bucket))) +
+ geom_line(aes(color=year_joined.bucket))
+```
+***
+
+### Friendships Initiated
+Notes:
+
+What is the median friend rate?
+0.2205
+What is the maximum friend rate?
+417
+```{r Friendships Initiated}
+with(subset(pf, tenure>=1), summary(friend_count/tenure))
+```
+
+***
+
+### Bias-Variance Tradeoff Revisited
+Notes:
+使用不同的时间在调整x轴的变化，减少噪音
+```{r Bias-Variance Tradeoff Revisited}
+
+ggplot(aes(x = tenure, y = friendships_initiated / tenure),
+       data = subset(pf, tenure >= 1)) +
+  geom_line(aes(color = year_joined.bucket),
+            stat = 'summary',
+            fun.y = mean)
+
+ggplot(aes(x = 7 * round(tenure / 7), y = friendships_initiated / tenure),
+       data = subset(pf, tenure > 0)) +
+  geom_line(aes(color = year_joined.bucket),
+            stat = "summary",
+            fun.y = mean)
+
+ggplot(aes(x = 30 * round(tenure / 30), y = friendships_initiated / tenure),
+       data = subset(pf, tenure > 0)) +
+  geom_line(aes(color = year_joined.bucket),
+            stat = "summary",
+            fun.y = mean)
+
+ggplot(aes(x = 90 * round(tenure / 90), y = friendships_initiated / tenure),
+       data = subset(pf, tenure > 0)) +
+  geom_line(aes(color = year_joined.bucket),
+            stat = "summary",
+            fun.y = mean)
+
+```
+
+
+```{r smooth method}
+ggplot(aes(x=tenure, y=friendships_initiated/tenure), data=subset(pf, tenure>=1)) +
+  geom_smooth(aes(color=year_joined.bucket))
+```
+***
+
+### Sean's NFL Fan Sentiment Study
+Notes:
+
+***
+
+### Introducing the Yogurt Data Set
+Notes:
+
+***
+
+### Histograms Revisited
+Notes:
+
+```{r read data}
+yo = read.csv("yogurt.csv")
+yo$id <- factor(yo$id)
+```
+
+```{r Histograms Revisited, echo=TRUE}
+qplot(yo$price, binwidth=10, fill="orange")
+```
+
+***
+
+### Number of Purchases
+Notes:
+tranform是直接在源数据集上变更，不需要哦在另外定义列名称
+```{r Number of Purchases}
+yo <-transform(yo, all.purchase=strawberry+blueberry+pina.colada+plain+mixed.berry)
+```
+
+***
+
+### Prices over Time
+Notes:随着时间推移，用户购买高价的人数增多，在后期还有低价购买的人可能是使用了优惠券
+
+```{r Prices over Time}
+ggplot(aes(x=time, y=price), data=yo) +
+  geom_jitter(shape=21, alpha=.25, fill=I("#F79420"))
+```
+
+***
+
+### Sampling Observations
+Notes:因为是需要对小样本进行分析，建立家庭结构和购买之间关系，所以通过抽样来分析
+
+***
+
+### Looking at Samples of Households
+更能发现是否购买变化，针对某个家庭。因为该数据中有针对单个家庭的时间序列变化
+```{r Looking at Sample of Households}
+set.seed(4230)
+sample.ids <- sample(levels(yo$id), 16)
+
+ggplot(aes(x=time, y=price), data=subset(yo, id %in% sample.ids)) +
+  geom_line() +
+  geom_point(aes(size=all.purchase), pch=1) +
+  facet_wrap(~id)
+```
+
+
+```{r Looking at Sample of Households1}
+set.seed(1354)
+sample.ids <- sample(levels(yo$id), 16)
+
+ggplot(aes(x=time, y=price), data=subset(yo, id %in% sample.ids)) +
+  geom_line() +
+  geom_point(aes(size=all.purchase), pch=1) +
+  facet_wrap(~id)
+```
+
+
+***
+
+### The Limits of Cross Sectional Data
+Notes:
+缺少对单个人的数据变化
+***
+
+### Many Variables
+Notes:
+可以从多个变量是否具有特定关系出发，从不同变量来验证分析；同样可能是需要从大量数据集中取分析小数据集
+***
+
+### Scatterplot Matrix
+Notes:
+可以使用GGally的package来对整体的变量进行分析
+***
+
+### Even More Variables
+Notes:
+设置样本种子，体现数据一致性。取消了id，加入年份以及后续加的变量
+***
+
+```{r subset data variable}
+library(GGally)
+theme_set(theme_minimal(20))
+
+set.seed(1836)
+pf_subset <- pf[, c(2:15)]
+names(pf_subset)
+
+```
+
+```{r multi variable}
+ggpairs(pf_subset[sample.int(nrow(pf_subset), 1000), ])
+```
+
+### Heat Maps
+Notes:
+
+```{r nci data}
+nci <- read.table("nci.tsv")
+colnames(nci) <- c(1:64)
+```
+
+```{r heatmap}
+library(reshape)
+nci.long.samp <- melt(as.matrix(nci[1:200,]))
+names(nci.long.samp) <- c("gene", "case", "value")
+head(nci.long.samp)
+
+ggplot(aes(y = gene, x = case, fill = value),
+  data = nci.long.samp) +
+  geom_tile() +
+  scale_fill_gradientn(colours = colorRampPalette(c("blue", "red"))(100))
+```
+
+
+***
+
+### Analyzing Three of More Variables
+Reflection:
+多变量分析，多组／散点图，热力图，长短数据集变化
+***
+
+Click **KnitHTML** to see all of your hard work and to have an html
+page of this lesson, your answers, and your notes!
+

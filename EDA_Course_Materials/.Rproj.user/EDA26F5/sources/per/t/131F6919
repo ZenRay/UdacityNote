@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1510674701507.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "131F6919",
+    "lastKnownWriteTime" : 4845046560,
+    "last_content_update" : 1510674701507,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "B778DAB7",
+        "caption" : "pf.fc_by_age_gender",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=pf.fc_by_age_gender&cache_key=B778DAB7",
+        "displayedObservations" : 202,
+        "environment" : "",
+        "object" : "pf.fc_by_age_gender",
+        "preview" : 0,
+        "totalObservations" : 202,
+        "variables" : 5
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,2 @@
+"0","ggplot(aes(x=tenure, y=friendships_initiated/tenure), data=subset(pf, tenure>=1)) +"
+"0","  geom_smooth(aes(color=year_joined.bucket))"

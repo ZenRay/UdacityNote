@@ -1,0 +1,6 @@
+"0","data(""diamonds"")"
+"0","library(ggplot2)"
+"0","ggplot(aes(x=carat, y=price), data=diamonds) +"
+"0","  geom_point(alpha=.5, color=""black"", fill=""orange"") +"
+"0","  scale_x_continuous(limits=c(0, quantile(diamonds$carat, .99))) +"
+"0","  geom_smooth(method=""lm"")"

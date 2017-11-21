@@ -1,0 +1,2 @@
+"0","ggplot(aes(x=age), data=pf) +"
+"0","  geom_histogram(fill=""blue"", color=""black"") "

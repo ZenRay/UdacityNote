@@ -1,0 +1,3 @@
+"0","ggplot(aes(x=www_likes), data=subset(pf, !is.na(gender))) +"
+"0","  geom_freqpoly(aes(color=gender)) +"
+"0","  scale_x_log10()"

@@ -1,0 +1,2 @@
+"0","nci <- read.table(""nci.tsv"")"
+"0","colnames(nci) <- c(1:64)"

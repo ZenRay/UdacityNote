@@ -1,0 +1,2 @@
+"0","lightCars <- subset(mtcars, wt < 2000)"
+"0","lightCars"

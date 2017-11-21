@@ -1,0 +1,6 @@
+"0","library(gridExtra)"
+"0","p1 <- ggplot(aes(x=age, y=mean), data=subset(pf.fc_by_age, age<71)) +"
+"0","  geom_line() #只探索0-70岁的用户"
+"0","p2 <- ggplot(aes(age_with_month, mean), data=subset(pf.fc_by_age_months, age_with_month<71)) +"
+"0","  geom_line() #增加噪点研究年龄上的平均朋友数变化"
+"0","grid.arrange(p2, p1, ncol=1)"

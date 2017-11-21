@@ -1,0 +1,3 @@
+"0","qplot(carat, price, data=diamonds) +"
+"0","  scale_y_continuous(trans=log10_trans()) +"
+"0","  ggtitle(""Price (log10) by carat"")"

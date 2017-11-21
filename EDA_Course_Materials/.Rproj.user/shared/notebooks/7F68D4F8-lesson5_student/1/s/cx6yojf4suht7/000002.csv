@@ -1,0 +1,1 @@
+"0","pf$year_joined <- floor(2014 -pf$tenure/365)"

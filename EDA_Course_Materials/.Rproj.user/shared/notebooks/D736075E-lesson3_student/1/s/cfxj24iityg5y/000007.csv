@@ -1,0 +1,2 @@
+"0","qplot(x=gender, y=friend_count, data=subset(pf, !is.na(gender)), geom=""boxplot"") +"
+"0","  coord_cartesian(ylim=c(0,1000))"

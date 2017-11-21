@@ -1,0 +1,2 @@
+"0","cuberoot_trans = function() trans_new('cuberoot', transform = function(x) x^(1/3),"
+"0","                                      inverse = function(x) x^3)"
