@@ -329,6 +329,8 @@ D3在绘图流程中需要对数据进行处理，转换为 js 可处理的 data
 
 2. d3 的 mercator (墨卡托投影)的投影实现三维球体转换为二维平面图形——将关注点集中在需要表达的地方，对其他关注点较弱的地方进行扭曲转换，以换取关注点的真实性
 
+3. 关于 D3 创建地图需要注意⚠️几点——一个是使用 projection 的时候需要注意根据不同的地图和数据源差异来选择不同的方案（例如 V4 版本中 d3.geoAlbersUsa 和 d3.geoPath 存在差异）；另一个是 topojson 的对象需要通过 topojson.feature 来转换对象为 geojson
+
 相关参考：[关于D3地图的基础信息](https://bost.ocks.org/mike/map/)、[地图的基础信息_数据 2](http://mapschool.io/)
 
 ```
