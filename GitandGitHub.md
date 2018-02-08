@@ -357,3 +357,9 @@ So you should not rebase if you have already pushed the commits you want to reba
 1. [Git Commit Message Style Guide](https://udacity.github.io/git-styleguide/)
 2. [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
 3. [git-rebase](https://git-scm.com/docs/git-rebase)
+4. [Become a GitHub Pro | Udacity](https://blog.udacity.com/2015/06/become-github-pro.html)
+
+	>描述了使用 GitHub及其优势，通过哪些方式去查找合适的 opensource 、repo等。总之需要多尝试
+5. [How to Contribute to Open Source | Open Source Guides](https://opensource.guide/how-to-contribute/)
+
+	>了解怎么去 contirbute，另外可以通过文中的 checklist 来查找合适的项目去尝试
