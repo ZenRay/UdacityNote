@@ -21,12 +21,12 @@ These are fantastic questions! I can't stress enough how important it is to spen
 
 Now, what makes a "good" commit message? That's a great question and has been written about a number of times. Here are some important things to think about when crafting a good commit message:
 
-###Do
+**Do**
 
 do keep the message short (less than 60-ish characters)
 do explain what the commit does (not how or why!)
 
-###Do not
+**Do not**
 
 do not explain why the changes are made (more on this below)
 do not explain how the changes are made (that's what git log -p is for!)
@@ -38,47 +38,49 @@ The best way that I've found to come up with a commit message is to finish this 
 Above all, be consistent in how you write your commit messages!
 
 ## commit style —— Udacity Git Commit Message Style Guide
+1. Introduction
 
+    This style guide acts as the official guide to follow in your projects. Udacity evaluators will use this guide to grade your projects. There are many opinions on the "ideal" style in the world of development. Therefore, in order to reduce the confusion on what style students should follow during the course of their projects, we urge all students to refer to this style guide for their projects.
+    
+2. Commit Messages
 
-### Introduction
-This style guide acts as the official guide to follow in your projects. Udacity evaluators will use this guide to grade your projects. There are many opinions on the "ideal" style in the world of development. Therefore, in order to reduce the confusion on what style students should follow during the course of their projects, we urge all students to refer to this style guide for their projects.
+    Message Structure
+    A commit messages consists of three distinct parts separated by a blank line: the title, an optional body and an optional footer. The layout looks like this:
+    
+    ```
+    type: subject
+    
+    body
+    
+    footer
+    ```
 
-### Commit Messages
-Message Structure
-A commit messages consists of three distinct parts separated by a blank line: the title, an optional body and an optional footer. The layout looks like this:
+    The title consists of the type of the message and subject.
 
-```
-type: subject
+3. The Type
+    
+    The type is contained within the title and can be one of these types:
+    
+    * feat: a new feature
+    * fix: a bug fix
+    * docs: changes to documentation
+    * style: formatting, missing semi colons, etc; no code change
+    * refactor: refactoring production code
+    * test: adding tests, refactoring test; no production code change
+    * chore: updating build tasks, package manager configs, etc; no production code change
 
-body
+4. The Subject
 
-footer
-```
+    Subjects should be no greater than 50 characters, should begin with a capital letter and do not end with a period.
 
-The title consists of the type of the message and subject.
+    Use an imperative tone to describe what a commit does, rather than what it did. For example, use change; not changed or changes.
 
-### The Type
-The type is contained within the title and can be one of these types:
+5. The Body
+    Not all commits are complex enough to warrant a body, therefore it is optional and only used when a commit requires a bit of explanation and context. Use the body to explain the what and why of a commit, not the how.
 
-* feat: a new feature
-* fix: a bug fix
-* docs: changes to documentation
-* style: formatting, missing semi colons, etc; no code change
-* refactor: refactoring production code
-* test: adding tests, refactoring test; no production code change
-* chore: updating build tasks, package manager configs, etc; no production code change
+    When writing a body, the blank line between the title and the body is required and you should limit the length of each line to no more than 72 characters.
 
-### The Subject
-Subjects should be no greater than 50 characters, should begin with a capital letter and do not end with a period.
-
-Use an imperative tone to describe what a commit does, rather than what it did. For example, use change; not changed or changes.
-
-### The Body
-Not all commits are complex enough to warrant a body, therefore it is optional and only used when a commit requires a bit of explanation and context. Use the body to explain the what and why of a commit, not the how.
-
-When writing a body, the blank line between the title and the body is required and you should limit the length of each line to no more than 72 characters.
-
-### The Footer
+6. The Footer
 The footer is optional and is used to reference issue tracker IDs.
 
 ### Example Commit Message
@@ -144,9 +146,9 @@ See also: #456, #789
 * ? - matches 1 character
 * [abc] - matches a, b, or c
 * \*\* - matches nested directories - a/\*\*/z matches
-	* a/z
-	* a/b/z
-	* a/b/c/z
+    * a/z
+    * a/b/z
+    * a/b/c/z
 
 假设需要对 sample 文件夹中的 jpg 文件进行忽略的话，将相应说明防水加入 .gitignore 中，使用方法如下：
 
@@ -158,11 +160,11 @@ sample/*.jpg
 git tag 的重要作用是对那些不想显性显示提交的说明，可以加 tag 方法作为某一类的说明。相关用法如下：
 
 ```
-$ git tag -a v1.0	# 添加 tag 名称为 v1.0，⚠️也需要添加说明
+$ git tag -a v1.0   # 添加 tag 名称为 v1.0，⚠️也需要添加说明
 
-$ git tag				# 验证和显示添加的 tag
+$ git tag               # 验证和显示添加的 tag
 
-$ git log --decorate	# 此命令不仅可以显示已经提交的 commit 的 log 而且可以显示已经提交的 tag
+$ git log --decorate    # 此命令不仅可以显示已经提交的 commit 的 log 而且可以显示已经提交的 tag
 
 ```
 
@@ -176,8 +178,8 @@ $ git log --decorate	# 此命令不仅可以显示已经提交的 commit 的 log
 ```
 # 同样需要先在 GitHub 上创建远程仓库
 # 在本地的命令行窗口输入以下命令
-git remote add origin remote_repo_url		# reomte_repo_url 是远程仓库的 git url;该命令是将远程仓库添加到本地可远程操作
-git push -u origin master		# 将本地文件推送到远程，后续推送可以不用 -u 的参数，直接使用 git push origin master
+git remote add origin remote_repo_url       # reomte_repo_url 是远程仓库的 git url;该命令是将远程仓库添加到本地可远程操作
+git push -u origin master       # 将本地文件推送到远程，后续推送可以不用 -u 的参数，直接使用 git push origin master
 ```
 
 以上方式创建的个人仓库，不能用做协作处理共有项目。假设团队协作创建的远程 repo，需要将本地文件上传到远程的 repo 中，可以使用以下流程及命令：
@@ -185,12 +187,12 @@ git push -u origin master		# 将本地文件推送到远程，后续推送可以
 1. first, this command has the sub command `add`
 2. the word `origin` is used —— this is setting the shortname that we discussed earlier
 
-	* Remember that the word origin here isn't special in any way.
-	* If you want to change this to `repo-on-GitHub`, then (before running the command) just change the word "origin" to "repo-on-GitHub":
+    * Remember that the word origin here isn't special in any way.
+    * If you want to change this to `repo-on-GitHub`, then (before running the command) just change the word "origin" to "repo-on-GitHub":
 
-	```
-	$ git remote add repo-on-GitHub remote_repo_url
-	```
+    ```
+    $ git remote add repo-on-GitHub remote_repo_url
+    ```
 3. third, the full path to the repository is added (i.e. the URL to the remote repository on the web)
 
 **注意⚠️：如果要验证是否已经添加了远程的地址到本地的中，可以使用`git remote -v` 来确认**
@@ -207,8 +209,8 @@ This is not a massive project, but it does have well over 1,000 commits. A quick
 Another way that we can display all of the commits by an author is to use the regular `git log` command but include the --author flag to filter the commits to the provided author.
 
 ```
-$ git log --author=Surma		# 删选出 Surma 的提交
-$ git log --author="Paul Lewis"		# 如果有空格，那么需要在名称上添加引号
+$ git log --author=Surma        # 删选出 Surma 的提交
+$ git log --author="Paul Lewis"     # 如果有空格，那么需要在名称上添加引号
 ```
 
 ### Filter Commits By Search
@@ -282,7 +284,7 @@ Remember that the word `origin` is just the default name that's used when you `g
 Notice that I've used the name `upstream` as the shortname to reference the source repository. As with the `origin` shortname, the word `upstream` here is not special in any way; It's just a regular word. This could have been any word... like the word "banana". But the word "upstream" is typically used to refer to the source repository.
 
 ```
-$ git remote add upstream folked_repo_name	# folked_repo_name 是指定的 folk 的源 repo url 地址——例如 https://github.com/udacity/course-collaboration-travel-plans.git
+$ git remote add upstream folked_repo_name  # folked_repo_name 是指定的 folk 的源 repo url 地址——例如 https://github.com/udacity/course-collaboration-travel-plans.git
 ```
 
 ### Origin vs Upstream Clarification
@@ -290,20 +292,20 @@ One thing that can be a tiny bit confusing right now is the difference between t
 
 Remember that the names `origin` and `upstream` are just the default or de facto names that are used. If it's clearer for you to name your `origin` remote `mine` and the `upstream` remote `source-repo`, then by all means, go ahead and rename them. What you name your remote repositories in your local repository does not affect the source repository at all.
 
-针对个人本地 repo 和 folk 的远程 repo，可能出现不时，需要注意以上操作。
+针对个人本地 repo 和 folk 的远程 repo，可能出现不同步，需要注意以上操作。
 
 对应个人 repo 和 folk 的 repo 名称，可以使用 `git remote rename` 来进行更改，方式如下：
 
 ```
-$ git remote rename origin mine 	#将个人的 origin 名称改为 mine
-$ git remote rename upstream source-repo		#将 folk upstream 名称为 source-repo
+$ git remote rename origin mine     #将个人的 origin 名称改为 mine
+$ git remote rename upstream source-repo        #将 folk upstream 名称为 source-repo
 ```
 
 ### Retrieving Upstream Changes
 Now to get the changes from upstream remote repository, all we have to do is run a `git fetch` and use the `upstream` shortname rather than the `origin` shortname:
 
 ```
-$ git fetch upstream master	# 需要注意命令行的 fetch 只是对本地 repo 进行了处理，并没有 merge 和 commit 到个人的远程 repo 中
+$ git fetch upstream master # 需要注意命令行的 fetch 只是对本地 repo 进行了处理，并没有 merge 和 commit 到个人的远程 repo 中
 
 # 如果需要对本地文件进行 merge 和 push，可以通过以下方式
 # to make sure I'm on the correct branch for merging
@@ -337,9 +339,9 @@ Let's take another look at the different commands that you can do with git rebas
 * use `p` or `pick` – to keep the commit as is
 * use `r` or `reword` – to keep the commit's content but alter the commit message
 * use `e` or `edit` – to keep the commit's content but stop before committing so that you can:
-	* add new content or files
-	* remove content or files
-	* alter the content that was going to be committed
+    * add new content or files
+    * remove content or files
+    * alter the content that was going to be committed
 * use `s` or `squash` – to combine this commit's changes into the previous commit (the commit above it in the list)
 * use `f` or `fixup` – to combine this commit's change into the previous one but drop the commit message
 * use `x` or `exec` – to run a shell command
@@ -352,6 +354,24 @@ Whenever you rebase commits, Git will create a new SHA for each commit! This has
 
 So you should not rebase if you have already pushed the commits you want to rebase. If you're collaborating with other developers, then they might already be working with the commits you've pushed. If you then use git rebase to change things around and then force push the commits, then the other developers will now be out of sync with the remote repository. They will have to do some complicated surgery to their Git repository to get their repo back in a working state...and it might not even be possible for them to do that; they might just have to scrap all of their work and start over with your newly-rebased, force-pushed commits.
 
+## Git commit 规范化工具
+使用 [Commitizen](https://github.com/commitizen/cz-cli) —— 一个规范化的 commit 工具，特点是通过选择和步骤分解来提交 commit。安装流程如下：
+
+```
+# 首先全局安装工具
+$ npm install -g commitizen
+$ npm install -g cz-conventional-changelog
+
+# 创建配置文件，并添加路径
+$ echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+
+# 安装完成需要在项目目录里，初始化工具
+$ commitizen init cz-conventional-changelog --save --save-exact
+```
+
+以后，凡是用到 `git commit` 命令，一律改为使用 `git cz`。
+
+**注意**⚠️：推荐将相应的非项目文件和文件夹添加到 `.gitignore` 中。
 
 ## reference 
 1. [Git Commit Message Style Guide](https://udacity.github.io/git-styleguide/)
@@ -359,7 +379,10 @@ So you should not rebase if you have already pushed the commits you want to reba
 3. [git-rebase](https://git-scm.com/docs/git-rebase)
 4. [Become a GitHub Pro | Udacity](https://blog.udacity.com/2015/06/become-github-pro.html)
 
-	>描述了使用 GitHub及其优势，通过哪些方式去查找合适的 opensource 、repo等。总之需要多尝试
+    >描述了使用 GitHub及其优势，通过哪些方式去查找合适的 opensource 、repo等。总之需要多尝试
 5. [How to Contribute to Open Source | Open Source Guides](https://opensource.guide/how-to-contribute/)
 
-	>了解怎么去 contirbute，另外可以通过文中的 checklist 来查找合适的项目去尝试
+    >了解怎么去 contirbute，另外可以通过文中的 checklist 来查找合适的项目去尝试
+6. [commitizen/cz-cli: The commitizen command line utility.](https://github.com/commitizen/cz-cli)
+
+    > git commit 规范化工具 repo
