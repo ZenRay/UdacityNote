@@ -199,41 +199,45 @@ git push -u origin master       # 将本地文件推送到远程，后续推送�
 
 
 ## 团队协作
-### Filtering Collaborator's Commits
-Being able to narrow down the commits to just the ones you're looking for can be a chore. Let's look at the different ways we can discover information that our collaborators have done!
+1. Filtering Collaborator's Commits
 
-### Group By Commit Author
-This is not a massive project, but it does have well over 1,000 commits. A quick way that we can see how many commits each contributor has added to the repository is to use the `git shortlog` command —— displays an alphabetical list of names and the commit messages that go along with them. If we just want to see just the number of commits that each developer has made, we can add a couple of flags: `-s` to show just the number of commits (rather than each commit's message) and `-n` to sort them numerically (rather than alphabetically by author name).
+	Being able to narrow down the commits to just the ones you're looking for can be a chore. Let's look at the different ways we can discover information that our collaborators have done!
 
-### Filter By Author
-Another way that we can display all of the commits by an author is to use the regular `git log` command but include the --author flag to filter the commits to the provided author.
+2. Group By Commit Author
 
-```
-$ git log --author=Surma        # 删选出 Surma 的提交
-$ git log --author="Paul Lewis"     # 如果有空格，那么需要在名称上添加引号
-```
+	This is not a massive project, but it does have well over 1,000 commits. A quick way that we can see how many commits each contributor has added to the repository is to use the `git shortlog` command —— displays an alphabetical list of names and the commit messages that go along with them. If we just want to see just the number of commits that each developer has made, we can add a couple of flags: `-s` to show just the number of commits (rather than each commit's message) and `-n` to sort them numerically (rather than alphabetically by author name).
 
-### Filter Commits By Search
-Before going through this section on filtering by searching, I feel like I need to stress how important it is to write good, descriptive commit messages. If you write a descriptive commit message, then it's so much easier to search through the commit messages, later, to find exactly what you're looking for.
+3. Filter By Author
 
-And remember, if the commit message is not enough for you to explain what the commit is for, you can provide a detailed description of exactly why the commit is needed in the description area.
+	Another way that we can display all of the commits by an author is to use the regular `git log` command but include the --author flag to filter the commits to the provided author.
+	
+	```
+	$ git log --author=Surma        # 删选出 Surma 的提交
+	$ git log --author="Paul Lewis"     # 如果有空格，那么需要在名称上添加引号
+	```
 
-Let see an example of extra details in a commit in the lighthouse project by looking at commit `5966b66`:
+4. Filter Commits By Search
 
-```
-$ git show 5966b66
-```
+	Before going through this section on filtering by searching, I feel like I need to stress how important it is to write good, descriptive commit messages. If you write a descriptive commit message, then it's so much easier to search through the commit messages, later, to find exactly what you're looking for.
 
-So why do we care about all of this detail? For one thing, it's easier for you to go back and review the changes made to the repository, and it easier for others to review the changes to. Another thing is filtering commits by information in the current message or description area.
-
-We can filter commits with the `--grep` flag.
-
-How about we filter down to just the commits that reference the word "bug". We can do that with either of the following commands:
-
-```
-$ git log --grep=bug
-$ git log --grep bug
-```
+	And remember, if the commit message is not enough for you to explain what the commit is for, you can provide a detailed description of exactly why the commit is needed in the description area.
+	
+	Let see an example of extra details in a commit in the lighthouse project by looking at commit `5966b66`:
+	
+	```
+	$ git show 5966b66
+	```
+	
+	So why do we care about all of this detail? For one thing, it's easier for you to go back and review the changes made to the repository, and it easier for others to review the changes to. Another thing is filtering commits by information in the current message or description area.
+	
+	We can filter commits with the `--grep` flag.
+	
+	How about we filter down to just the commits that reference the word "bug". We can do that with either of the following commands:
+	
+	```
+	$ git log --grep=bug
+	$ git log --grep bug
+	```
 
 ### 问题检视——GitHub Issues
 "issues" doesn't mean that there's actually a bug, it can just be any change that needs to be made to the project. GitHub's issue tractor is quite sophisticated. Each issue can:
@@ -332,6 +336,11 @@ The `-i` in the command stands for "interactive". You can perform a rebase in a 
 I had to force push the branch. I had to do this because GitHub was trying to prevent me from accidentally deleting commits. Because I used the `git rebase` command, I effectively erased the three separate commits that recorded my addition of Florida, Paris, and Scotland. I used `git rebase` to combine or squash all of these commits into one, single commit.
 
 Using `git rebase` creates a new commit with a new SHA. When I tried using `git push` to send this commit up to GitHub, GitHub knew that accepting the push would erase the three separate commits, so it rejected it. So I had to force push the commits through using `git push -f`
+
+------
+需要注意：对远程仓库的版本历史修改，都是在本地修改的基础上进行的：本地修改完成后，再 push 到远程仓库。但是除了 git revert 可以直接 push，其他都会对原有的版本历史修改，只能使用强制 push
+
+------
 
 ### Rebase Commands
 Let's take another look at the different commands that you can do with git rebase:
