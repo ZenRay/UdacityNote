@@ -1,6 +1,0 @@
-"0","set.seed(1354)"
-"0","sample.ids <- sample(levels(yo$id), 16)"
-"0","ggplot(aes(x=time, y=price), data=subset(yo, id %in% sample.ids)) +"
-"0","  geom_line() +"
-"0","  geom_point(aes(size=all.purchase), pch=1) +"
-"0","  facet_wrap(~id)"

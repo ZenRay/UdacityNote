@@ -1,2 +1,0 @@
-"0","ggplot(aes(x=time, y=price), data=yo) +"
-"0","  geom_jitter(shape=21, alpha=.25, fill=I(""#F79420""))"

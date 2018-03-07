@@ -1,4 +1,0 @@
-"0","ggplot(aes(age_with_month, mean), data=pf.fc_by_age_months) +"
-"0","  geom_line() +"
-"0","  xlim(13, 70) +"
-"0","  ylim(0, 500)"

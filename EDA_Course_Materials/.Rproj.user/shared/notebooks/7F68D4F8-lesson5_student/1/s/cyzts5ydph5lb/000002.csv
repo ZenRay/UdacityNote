@@ -1,3 +1,0 @@
-"0","ggplot(aes(x=gender, y=age), data=subset(pf, !is.na(gender))) +"
-"0","  geom_boxplot() +"
-"0","  stat_summary(fun.y=mean, geom=""point"", shape=4)"

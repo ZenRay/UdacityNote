@@ -1,2 +1,0 @@
-"0","ggplot(aes(x=gender), data=subset(pf, !is.na(gender))) +"
-"0","  geom_boxplot(aes(y=friend_count))"

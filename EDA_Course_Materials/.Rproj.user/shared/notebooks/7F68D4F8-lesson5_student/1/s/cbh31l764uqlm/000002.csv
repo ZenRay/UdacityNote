@@ -1,5 +1,0 @@
-"0","pf.fc_by_age_gender <- pf %>%"
-"0","    filter(!is.na(gender)) %>%"
-"0","    group_by(age, gender) %>%"
-"0","    summarise(mean_friend_count=mean(friend_count), median_friend_count=median(friend_count), n=n())"
-"0","head(pf.fc_by_age_gender)"

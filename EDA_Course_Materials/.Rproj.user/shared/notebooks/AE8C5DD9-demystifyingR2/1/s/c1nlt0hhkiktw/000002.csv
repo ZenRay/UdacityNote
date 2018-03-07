@@ -1,1 +1,0 @@
-"0","subset(mtcars, mpg >= 30 | hp < 60)"

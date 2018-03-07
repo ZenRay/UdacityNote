@@ -1,2 +1,0 @@
-"0","ggplot(aes(x=tenure, y=friendships_initiated), data=subset(pf, !is.na(year_joined.bucket))) +"
-"0"," geom_line(aes(color=year_joined.bucket))"

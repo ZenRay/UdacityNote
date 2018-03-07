@@ -1,4 +1,0 @@
-"0","ggplot(aes(y = gene, x = case, fill = value),"
-"0","  data = nci.long.samp) +"
-"0","  geom_tile() +"
-"0","  scale_fill_gradientn(colours = colorRampPalette(c(""blue"", ""red""))(100))"

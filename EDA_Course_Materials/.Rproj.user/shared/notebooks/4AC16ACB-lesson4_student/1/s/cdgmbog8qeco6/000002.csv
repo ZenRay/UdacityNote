@@ -1,3 +1,0 @@
-"0","ggplot(aes(x=age, y=friend_count), data=pf) +"
-"0","  geom_point(alpha=0.05) +"
-"0","  xlim(13,90)"

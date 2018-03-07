@@ -1,3 +1,0 @@
-"0","ggplot(aes(x=age, y=female/male), data=pf.fc_by_age_gender.wide) +"
-"0","  geom_line() +"
-"0","  geom_hline(yintercept=1, alpha=.4, linetype=4)"

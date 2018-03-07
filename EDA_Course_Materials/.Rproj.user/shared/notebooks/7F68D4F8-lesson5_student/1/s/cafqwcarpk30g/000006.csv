@@ -1,3 +1,0 @@
-"0","ggplot(aes(x=age, y=friend_count), data=subset(pf, !is.na(year_joined.bucket))) +"
-"0","geom_line(aes(color=year_joined.bucket), stat=""summary"", fun.y=mean, linetype=1) +"
-"0","geom_line(stat=""summary"", fun.y=mean, linetype=5)"
