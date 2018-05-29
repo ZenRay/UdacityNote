@@ -5,6 +5,7 @@
 * [seaborn使用注意事项](#5)
 * [Python运算符重载](#6)
 
+
 [toc]
 
 
@@ -235,3 +236,40 @@ def reducer():
     if old_key != None:
         print "{0}\t{1}".format(old_key, aadhaar_generated)
 ```
+
+
+# 参考
+1. [Magic 命令列表](http://ipython.readthedocs.io/en/stable/interactive/magics.html)
+2. [pdb 在 Python 使用方法](https://docs.python.org/3/library/pdb.html)
+3. [jupyter notebook 中使用 LaTex](http://data-blog.udacity.com/posts/2016/10/latex-primer/)
+4. [Jupyter notebook 格式转换](https://nbconvert.readthedocs.io/en/latest/usage.html)
+	
+	下面的例子转换 notebook 为 html 格式
+	
+	```
+	jupyter nbconvert --to html notebook.ipynb
+	```
+	
+	创建幻灯片
+	
+	通过 notebook 创建幻灯片，参见[例子](http://nbviewer.jupyter.org/format/slides/github/jorisvandenbossche/2015-PyDataParis/blob/master/pandas_introduction.ipynb#/)，它介绍了用于处理数据的 Pandas。
+	
+	在 notebook 中创建幻灯片的过程像平常一样，但需要指定作为幻灯片的单元格和单元格的幻灯片类型。在菜单栏中，点击“View”（视图）>“Cell Toolbar”（单元格工具栏）>“Slideshow”（幻灯片），以便在每个单元格上弹出幻灯片单元格菜单。这会在每个单元格上显示一个下拉菜单，让你选择单元格在幻灯片中的显示方式。
+	
+	Slides（幻灯片）是你从左向右移动的完整幻灯片。按向上或向下的箭头时，Sub-slides（子幻灯片）会出现在幻灯片中。Fragments（片段）最初是隐藏的，在你按下按钮时会出现。选择 Skip（忽略）会忽略幻灯片中的单元格，而选择 Notes（备注）会将为演讲者保留备注。
+	
+	运行幻灯片
+	
+	要通过 notebook 文件创建幻灯片，需要使用 nbconvert：
+	
+	```
+	jupyter nbconvert notebook.ipynb --to slides
+	```
+	
+	这只是将 notebook 转换为幻灯片必需的文件，你需要向其提供 HTTP 服务器才能真正看到演示文稿。要转换它并立即看到它，请使用
+	
+	```
+	jupyter nbconvert notebook.ipynb --to slides --post serve
+	```
+	
+	这会在浏览器中打开幻灯片，让你可以演示它。

@@ -382,6 +382,24 @@ $ commitizen init cz-conventional-changelog --save --save-exact
 
 **注意**⚠️：推荐将相应的非项目文件和文件夹添加到 `.gitignore` 中。
 
+
+## Git 配置代理
+配置代理，使用 `git config` 进行配置，使用 `socks5` 方式，具体命令如下：
+
+```
+git config --global http.proxy socks5://127.0.0.1:1080
+git config --global https.proxy socks5://127.0.0.1:1080
+
+```
+
+如果需要暂停配置代理可以使用以下方式：
+
+```
+git config --global http.proxy ""
+git config --global https.proxy ""
+
+```
+
 ## reference 
 1. [Git Commit Message Style Guide](https://udacity.github.io/git-styleguide/)
 2. [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
