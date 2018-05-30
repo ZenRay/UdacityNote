@@ -413,6 +413,18 @@ git commit --amend
 
 具体可以参考[Git - 撤消操作](https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%92%A4%E6%B6%88%E6%93%8D%E4%BD%9C)。
 
+## Git 更改已 push 的 commit
+解决这个问题，首先需要在本地切换 `head`，更改相应信息之后需要进行强制 `push`——这样才能进行更新远程的 `repo`：
+
+```
+git reset --hard <commit 序号>
+// 注意使用 --hard 参数会抛弃当前工作区的修改
+// 使用 --soft 参数的话会回退到之前的版本，但是保留当前工作区的修改，可以重新提交
+
+//完成相关 commit 修改之后使用强制 push
+git push -f origin master
+```
+
 
 ## reference 
 1. [Git Commit Message Style Guide](https://udacity.github.io/git-styleguide/)
