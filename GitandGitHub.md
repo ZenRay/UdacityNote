@@ -400,6 +400,20 @@ git config --global https.proxy ""
 
 ```
 
+## Git 更改未 push 的 commit
+如果需要更新最近的 `commit` 而改 `commit` 未进行 `push`，那么可以使用该命令：`git commit --amend`。
+
+如果刚才提交时忘了暂存某些修改，可以先补上暂存操作，然后再运行 `--amend` 提交:
+
+```
+git commit -m 'initial commit'
+git add forgotten_file
+git commit --amend
+```
+
+具体可以参考[Git - 撤消操作](https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%92%A4%E6%B6%88%E6%93%8D%E4%BD%9C)。
+
+
 ## reference 
 1. [Git Commit Message Style Guide](https://udacity.github.io/git-styleguide/)
 2. [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
