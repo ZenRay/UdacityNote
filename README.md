@@ -1,4 +1,4 @@
-[toc]
+[TOC]
 
 # Udanote
 note about udacity course and other information
@@ -18,4 +18,6 @@ note about udacity course and other information
 ## Python
 关于 Python 相关笔记，[地址](Python)
 
+## Statistics
 
+关于新课程统计学的总结笔记 [地址](./Statistics)
