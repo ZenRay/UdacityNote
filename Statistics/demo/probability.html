@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Probability Diagram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$', '$']]},
+            messageStyle: "none"
+        });
+    </script>
+</head>
+<body>
+    <div style="padding:10px">
+        <h3>
+            事件并:
+            <span>
+                    $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
+                </span>
+        </h3>
+        
+        <svg width="70%" height=400px style="padding: 20px" xmlns="http://www.w3.org/2000/svg">
+            <!-- event A -->
+            <circle cx="110px" cy="150px" r="100px" fill="#CCFFFF" />
+            <text x="90px" y="150px" class="heavy">A</text>
+            <!-- event B -->
+            <circle cx="230px" cy="150px" r="100px" fill="#6666FF" opacity="0.25"/>
+            <text x="220px" y="150px" class="heavy">B</text>
+            <!-- equal -->
+            <text x="330px" y="150px" class="heavy">=</text>
+
+            <!-- just event A -->
+            <circle cx="450px" cy="150px" r="100px" fill="#CCFFFF" />
+            <!-- <circle cx="570px" cy="150px" r="100px" fill="#FFFFFF"/> -->
+            <text x="440px" y="150px" class="heavy">A</text>
+
+            <!-- just event B -->
+            <circle cx="720px" cy="150px" r="100px" fill="#6666FF" opacity="0.25"/>
+            <!-- <circle cx="600px" cy="150px" r="100px" fill="#FFFFFF" /> -->
+            <text x="710px" y="150px" class="heavy">B</text>
+
+            <text x="570px" y="150px" class="heavy" style="z-index: 9999;">+</text>
+            <!-- A and B -->
+            <path d="M971 70 Q 1050 150, 971 229 z" fill="#CCFFFF"/>
+            <path d="M971 70 Q 900 150, 971 229 z" fill="#6666FF" opacity="0.25"/>
+            <text x="870px" y="150px" class="heavy" style="z-index: 9999;">-</text>
+        </svg>
+    </div>
+
+    <div style="padding: 10px">
+        <h3>
+            事件交:
+            <span>
+                    $P(A\cap B)$
+            </span>
+        </h3>
+
+        <svg width="70%" height=400px style="padding: 20px" xmlns="http://www.w3.org/2000/svg">
+            <!-- event A -->
+            <circle cx="110px" cy="150px" r="100px" fill="#CCFFFF" />
+            <text x="90px" y="150px" class="heavy">A</text>
+            <!-- event B -->
+            <circle cx="230px" cy="150px" r="100px" fill="#6666FF" opacity="0.25"/>
+            <text x="220px" y="150px" class="heavy">B</text>
+            <!-- equal -->
+            <text x="350px" y="150px" class="heavy">=</text>
+
+ 
+            <!-- A and B -->
+            <path d="M471 70 Q 550 150, 471 229 z" fill="#CCFFFF"/>
+            <path d="M471 70 Q 400 150, 471 229 z" fill="#6666FF" opacity="0.25"/>
+            
+        </svg>
+    </div>
+</body>
+</html>
