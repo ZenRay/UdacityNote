@@ -12,7 +12,7 @@
 
 ### 1.1 概率密度函数
 
-通过概率密度函数（**PDF**）进行微积分计算曲线下的面积，来计算出满足一定条件下的概率 $P(X\le x)=F(x), \and x\in(-\infin, \infin)$， $F(x)$  是概率密度函数
+通过概率密度函数（**PDF**）进行微积分计算曲线下的面积，来计算出满足一定条件下的概率 $P(X\le x)=F(x), \and x\in(-\infin, \infin)$， $F(x)$  是概率密度函数的积分
 
 * 小于某个 $x$ 的概率，同时就是说明在 $x$ 上的百分位数
 * 概率密度图的两侧永远不会和 X 轴相交
@@ -34,7 +34,125 @@
 
 ## 2. 二项分布
 
+二项分布（**Binomial Distribution**）即伯努利分布（**Bernoulli Distribution**）是指 $n$ 个独立的是非试验成功次数的概率分布。可以计作 $X \sim B(n,p)$
 
+* 其特点是：1）事件 $A$ 在 $n$ 次试验过程中的概率 $p$ 不会改变；2）每次的试验都是独立的
+* 概率计算公式：$p_i=b(i;n,p)=\Big(^i_n\Big)p^i(1-p)^{n-i}$ ，$n$ 次试验中发生$A$ 事件为 $i$ 次 $^{[6]}$ 
+
+## 3. 正态分布
+
+正态分布（**Normal Distribution**）又称高斯分布（**Gaussian Distribution**）${^{[7]}}$。从二项分布试验，通过大量测试可以模拟出类似正太分布的钟形分布。如果 $n$ 足够大，分布偏度较小，在这种情况下，将发生次数当作连续性数据进行校正，那么二项分布近似正太分布 $N(np, np(1-p)$。也就是说需要使用大量数据得到的分布结果是类似正态分布的，此外正态分布是误差检验等其他分析的基础——这里将正态分布和二项分布两者结果起来了。
+
+中心极限定理（**Central Limit Theorem**）成立是要求大量**相互独立的随机变量**的**均值**经过适当标准化后其收敛于正态分布。
+
+## 4. 概率、分布模拟
+
+在进行随机事件的模拟过程中需要使用随机的方式进行模拟，同时为了方便快速计算可以使用 `ndarray` 或者 `Series`, `DataFrame` 的数据类型。因此可以使用的 `package` 为 `Numpy` 或者 `Pandas`，这里直接使用了 `Numpy` 的模块
+
+1. 平衡随机取整 	该方式是将事件的发生当作是等可能的事件，使用的方法是 `numpy.random.randint`，可使用参数为 `low`，可选参数 `high`, `size`
+
+   ```python
+   import numpy as np
+   
+   # 这里包括两种方式，申明 high 参数数值和不申明 high 参数数值。如果没有申明，那么就是按照 np.arange(0, low-1) 的取值范围进行取值。如果申明的话，那么就是按照 np.arange(low, high-1) 范围取值；而 size 的值是表示得到的随机数据的 shape 大小
+   
+   # 未申明 high 参数，且取得的数值范围是 0 和 1，ndarray 的 shape 是 (1000,)
+   np.random.randint(2, size=1000)
+   
+   # 未申明 high 参数，且取得的数值范围是 0 和 1，ndarray 的 shape 是 (1000, 2)
+   np.random.randint(2, size=(1000, 2))
+   
+   # 申明 high 参数，且取得的数值范围是 1 到 6，ndarray 的 shape 是 (1000, 2)
+   np.random.randint(1, 7, size=(1000, 2))
+   ```
+
+2. 不平衡性随机取整  上面的方法中，各个事件都是等可能的。如果需要将各事件进行不平衡的方式进行取整，那么就需要使用 `choice` 的方式，其中使用的方法是 `numpy.random.choice` 。其中可使用的参数 `a` 可以使用 `array-like` （该方式就是申明了取值范围）或者 `int`（该方式的结果就是 `np.arange(0, int-1)` 取值范围） ，可选参数 `size` 和 `p`
+
+   ```python
+   import numpy as np
+   
+   # 如果可选参数概率 p 没有申明值，那么也是表示的是等可能发生事件的，这样的结果和上面的方式一样。如果需要声明各事件发生的概率，那么 p 需要使用 array_like 来申明对应的 a 的事件的概率
+   
+   # 下面的方式就是在 1 到 6 之间，得到 shape 是 (1000, ) 的 ndarray
+   np.random.choice(np.arange(1, 7), size=1000)
+   ```
+
+3. `ndarray` 的计算  
+
+   * 比较  `ndarray` 的计算可以进行常数比较——和 `broadcasting` 比较一样，也可以进行两个 `ndarray` 之间的相互比较
+   * 算数运算 算数运算同样是可以进行与常数进行运算，另外还可以进行 `ndarray` 之间进行运算。另外可以调用一些方法得到快速的值，例如极值、平均值等
+
+   ```python
+   # 使用示例的方式进行说明
+   first = np.random.randint(1, 7, size=1000)
+   second = np.random.randint(1, 7, size=1000)
+   
+   # 极值，平均值计算
+   first.max(), first.min().first.mean()
+   
+   # output
+    (6, 1, 3.453)
+    
+   # 运算与比较，这里是得到数值是偶数的概率
+   (first % 2 == 0).mean()
+   # output
+   0.491
+   ```
+
+4. 二项分布  在 `Numpy` 中可以使用 `numpy.random.binomial` 方法进行二项分布的模拟。其模拟的结果是表示事件发生的概率 `p`，进行 `n` 次试验或者同样的 `n` 个对象进行试验，模拟了 `size` 次数得到了一个 `shape` 是 `size` 的连续“胜利”次数的 `ndarray` 。其参数也就是 `n`, `size` 以及 `p`
+
+   ```python
+   # numpy.random.binomial(n, p, size=None)
+   import numpy as np
+   
+   # 模仿二项分布的单次试验进行了 10 次
+   np.random.binomial(10, 0.5)
+   
+   # output
+   6
+   
+   # 模仿二项分布发生了 20 次试验，且每次都是进行 10 次
+   np.random.binomial(10, 0.5, 20)
+   
+   # output
+   array([3, 4, 4, 5, 4, 6, 4, 4, 5, 7, 4, 4, 6, 4, 5, 4, 5, 4, 3, 3])
+   ```
+
+5. 条件概率的快速计算  对于条件概率的计算，可以使用 `DataFrame` 的 `groupby` 方法进行聚合即对应的分组来进行计算。因为 `groupyby` 可以创建多索引的数据，这样得到的结果就很像条件上的先决条件下第二条件发生的概率
+
+   ```python
+   df.groupby(["has_cancer", "test_result"]).size()
+   
+   # 上面这中排序方式，就是确认了是否有癌症的病人的情况下被检测出了癌症的病人的统计数量
+   # output
+   has_cancer  test_result
+   False       Negative       2077
+               Positive        531
+   True        Negative         29
+               Positive        277
+   dtype: int64
+   
+   # 接下来需要统计的是确认是否患癌症的病人的群组人数
+   df.groupby("has_cancer").size()
+   # output
+   has_cancer
+   False    2608
+   True      306
+   dtype: int64
+   
+   # 下面需要计算的是概率问题，所以需要通过计算比例的方式即可得到结果
+   df.groupby(["has_cancer", "test_result"]).size() / df.groupby("has_cancer").size()
+   
+   # output
+   has_cancer  test_result
+   False       Negative       0.796396
+               Positive       0.203604
+   True        Negative       0.094771
+               Positive       0.905229
+   dtype: float64
+   ```
+
+   
 
 ## 参考
 
@@ -46,13 +164,26 @@
 
 3. [概率：独立事件](https://www.shuxuele.com/data/probability-events-independent.html) 
 
-4. 概率的表述上存在几个不同类型：
+4. 概率的计算与条件概率：
 
-   * 古典概率计算，一个试验有 $N$ 个等可能（指的是每个结果的概率相同为 $1/N$）的概率，而事件 $A$ 的发生的结果是 $M$ 个，那么其发生的概率计算方式 $P(A)=\frac{M}{N}$
-   * 统计概率计算，它是通过试验去估计事件概率的方法，这是反复的将试验进行多次（例如 $n$ 次）统计事件 $A$ 发生的次数（例如 $m_1$)，通过计算频数的方式来得到的结果 $P(A)=\frac{m_1}{n}$
+   * 古典概率计算，一个试验有 $N$ 个等可能（指的是每个结果的概率相同为 $1/N$）的概率，而事件 $A$ 的发生的结果是 $M$ 个，那么其发生的概率计算方式 $P(A)=\frac{M}{N}$。举个例子来说就是，抛掷一个具有正 6 面骰子，如果出现偶数面（偶数面是 2， 4， 6）共有 3 种可能，那么按照古典概率计算方式就是 $p=\frac{3}{6}=0.5$
+   * 统计概率计算，它是通过试验去估计事件概率的方法，这是反复的将试验进行多次（例如 $n$ 次）统计事件 $A$ 发生的次数（例如 $m_1$)，通过计算频数的方式来得到的结果 $P(A)=\frac{m_1}{n}$。举个例子来看，抛掷硬币 1000 次，其中出现 498 次正面，那么本次试验中得到的概率是 $p=\frac{498}{1000}=0.498$
+
+   以上的事件类型都是独立的事件，但是在实际情况中存在其他的情况，一个事件的概率因其前面事件发生的类型不同而出现不同的概率，这就是条件概率的简单描述。其计算方式是 $P(A|B)=\frac{P(A\cap B)}{P(B)}=\frac{P(B|A)*P(A)}{P(B)}$，描述性表述就是 $B$ 事件发生的条件下，$A$ 事件发生的概率。
 
 5. [Simpson's Paradox ](https://brilliant.org/wiki/simpsons-paradox/#why-it-occurs) 示例
 
    现象上是在某个条件下的两组数据，分别讨论时都会满足某种性质，可是一旦合并考虑，却可能导致相反的结论。
 
    避免辛普森悖论，可能混杂因素影响。所以从混杂因素上考虑，1）对混杂因素进行分层分析，2）将混杂因素一起纳入多元回归。或者在设计实验时采用完全随机化分组。另外就是在计算变量时，假设了各分组的变量是可以累加的，但是这点需要根据实际情况判断——可以参考[辛普森悖论与直觉的缺陷](https://zhuanlan.zhihu.com/p/34999972) 
+
+6. [二項分佈 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E4%BA%8C%E9%A0%85%E5%88%86%E4%BD%88) 
+
+   * 阶乘（**Fractional**）：$n!=n\cdot(n-1)\cdot…2\cdot1$
+
+   * 排列（**Permutation**）： $A\!\left(^i_{n}\right)=\frac{n!}{(n-i)!}$
+   * 组合（**Combination**）：$C\!\left(^i_n\right)=\frac{n!}{i!(n-i)!}$ ，可以使用另一种表达式 $\Big(^i_{n}\!\Big)$ 
+
+7. [正态分布 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83) 
+
+   在抽样的示例中，抽样群体可能不符合正太分布，但是当进行抽样均值的分布却是复合正太分布

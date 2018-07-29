@@ -17,6 +17,31 @@
     </script>
 </head>
 <body>
+        <div style="padding:10px">
+                <h3>
+                    独立事件连续发生的概率:
+                    <span>
+                            $P(A \cdot A ...\cdot A)=P(A)\times P(A)...\times P(A)$
+                        </span>
+                </h3>
+                
+                <svg width="70%" height=250px style="padding: 20px" xmlns="http://www.w3.org/2000/svg">
+                    <!-- event A -->
+                    <circle cx="100px" cy="100px" r="70px" fill="#CCFFFF" />
+                    <text x="90px" y="100px" class="heavy">A</text>
+                    
+                    <text x="200px" y="100px" class="heavy">X</text>
+                    
+                    <circle cx="320px" cy="100px" r="70px" fill="#CCFFFF" />
+                    <text x="310px" y="100px" class="heavy">A</text>
+                    <text x="420px" y="100px" class="heavy">...</text>
+
+                    <text x="470px" y="100px" class="heavy">X</text>
+                    <circle cx="590px" cy="100px" r="70px" fill="#CCFFFF" />
+                    <text x="580px" y="100px" class="heavy">A</text>
+                </svg>
+            </div>
+
     <div style="padding:10px">
         <h3>
             事件并:
