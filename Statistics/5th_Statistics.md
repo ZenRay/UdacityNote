@@ -230,7 +230,7 @@ right\_sided\_test/right\_tailed\_test &\ \ \ \  \alpha =\rm 1- CL \Longleftrigh
 \end{align}
 $$
 
-#### 3.4 第一个练习解释
+#### 3.4 第一个练习解释——26.Notebook+ 练习：其他要考虑的事情
 
 1. 第一问和第二问
 
@@ -244,7 +244,7 @@ $$
 
    这里是重复上面的过程，目的是验证抽烟样本大小变化对统计学结论的影响
 
-#### 3.5 第二个练习
+#### 3.5 第二个练习解释——27.Notebook+ 练习：其他要考虑的事情
 
 这里需要理解的校正方法，模拟的试验次数以及 `p` 值检验方法说明
 
@@ -293,10 +293,10 @@ df.groupby("actual")["test"].mean()
    # 自助法是对抽取到的样本进行 z 次重复有放回的抽取 data_sample 中 n 个样本
    bootsample = []
    for _ in range(z):
-   	bootsample.append(data_sample.sample(n=n, replace=True).mean())
+   	bootsample.append(data_sample.sample(n=n, replace=True))
    ```
 
-   它用这种方法得到了样本分布，依据这个样本的离散程度情况来说明“基于样本结果来看，草原上的羊是黑色的”。更多详情参考 [Bootstrapping (statistics) - Wikipedia](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))
+   它用这种方法得到了样本分布，依据这个样本的离散程度情况来说明“基于草原上现有羊群的样本结果来看，草原上的羊是黑色的”。更多详情参考 [Bootstrapping (statistics) - Wikipedia](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))
 
 5. [3.0 - Hypothesis Testing | Statistics](https://onlinecourses.science.psu.edu/statprogram/node/136/) 
 
