@@ -149,7 +149,7 @@ Name: height, dtype: float64
 
 上面选择了其中一次抽样的计算两种条件下人员的平均身高
 
-### 2. `p` 值
+## 2. `p` 值
 
 定义：如果假设为真，观察到统计量 (或更多极端样本支持备择假设) 的概率。`p` 值的分布情况，和整个假设的关系图：
 
@@ -196,9 +196,9 @@ plt.axvline(x=high, color="r", linewidth=2)		# 这里的情况会显示是否有
 1. `p` 值检验法：利用统计检验方法，计算出统计检验值和 `p` 值。之后以这个 `p` 值和显著性水平值进行比较确认是否拒绝原假设
 2. 临界值法：通过显著性水平以及相应的统计学检验方法，确认临界值。根据计算的统计检验值和临界值比较确认是否拒绝原假设
 
-### 3. 统计检验中的其他因素
+## 3. 统计检验中的其他因素
 
-#### 3.1 样本选择
+### 3.1 样本选择
 
  在样本选择时需要考虑样本代表性问题，避免”驴唇对马嘴“的情况，这样得出的结论不能正确代表总体情况；同时样本规模的影响，对于样本规模增大，统计显著性会增强。
 
@@ -206,7 +206,7 @@ plt.axvline(x=high, color="r", linewidth=2)		# 这里的情况会显示是否有
 
 假设你在一项针对 100 多万人的研究中发现 **从统计学上来说** 更多人喜欢啤酒 1，而不是啤酒 2。根据这个结果，你决定开店售卖啤酒 1。然后你发现啤酒 1 的流行度只比啤酒 2 高出 0.0002% (但是在样本容量很大的情况中，这个具有统计意义)。实际上，你应该开店售卖两种啤酒。
 
-#### 3.2 多重假设检验（Multiple Hypothesis Test）校正
+### 3.2 多重假设检验（Multiple Hypothesis Test）校正
 
 当进行[多重比较](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) 时，会因为[族错误率](https://en.wikipedia.org/wiki/Family-wise_error_rate) 导致显著性增强。为了控制这种符合 $\rm I$ 类错误而进行校正：
 
@@ -217,7 +217,7 @@ plt.axvline(x=high, color="r", linewidth=2)		# 这里的情况会显示是否有
 1. 图基校正（**Tukey's method**）[7.4.7.1. Tukey's method](https://www.itl.nist.gov/div898/handbook/prc/section4/prc471.htm)
 2. [Q 值](http://www.nonlinear.com/support/progenesis/comet/faq/v2.0/pq-values.aspx) 常用于医学方面
 
-#### 3.3 确定置信水平、显著性水平以及 $\rm I$ 类错误概率等信息解读
+### 3.3 确定置信水平、显著性水平以及 $\rm I$ 类错误概率等信息解读
 
 显著性水平： $\alpha$
 
@@ -234,7 +234,7 @@ right\_sided\_test/right\_tailed\_test &\ \ \ \  \alpha =\rm 1- CL \Longleftrigh
 \end{align}
 $$
 
-#### 3.4 第一个练习解释——26.Notebook+ 练习：其他要考虑的事情
+### 3.4 第一个练习解释——26.Notebook+ 练习：其他要考虑的事情
 
 1. 第一问和第二问
 
@@ -248,7 +248,7 @@ $$
 
    这里是重复上面的过程，目的是验证抽烟样本大小变化对统计学结论的影响
 
-#### 3.5 第二个练习解释——27.Notebook+ 练习：其他要考虑的事情
+### 3.5 第二个练习解释——27.Notebook+ 练习：其他要考虑的事情
 
 这里需要理解的校正方法，模拟的试验次数以及 `p` 值检验方法说明
 
@@ -288,7 +288,7 @@ df.groupby("actual")["test"].mean()
 
 4. **Bootstrap** 法和有放回抽样的异同
 
-   两者在方法上都进行重采样的方法。但是自助法抽样是进行的 **有放回地全抽**——自助法抽取的样本量和原样本样本量相同。用 `Python` 代码进行如下解释：
+   两者在方法上都进行重采样的方法。但是自助法抽样是进行的 **有放回地抽样**——自助法抽取的样本量和原样本样本量可以相同。用 `Python` 代码进行如下解释：
 
    ```python
    # 一般的有放回抽样，对数据 data 进行有放回抽取 n 个样本
@@ -297,10 +297,17 @@ df.groupby("actual")["test"].mean()
    # 自助法是对抽取到的样本进行 z 次重复有放回的抽取 data_sample 中 n 个样本
    bootsample = []
    for _ in range(z):
-   	bootsample.append(data_sample.sample(n=n, replace=True))
+   	bootsample.append(data_sample.sample(n=n, replace=True).mean())
+       
+   # 此外最直接的 bootstrap 模拟就是直接使用 np.random.choice
+   students = np.random.randint(10, 10)
+   
+   sample = []
+   
+   sample = [np.random.choice(students, 21).mean() for _ in range(10000)]
    ```
 
-   它用这种方法得到了样本分布，依据这个样本的离散程度情况来说明“基于草原上现有羊群的样本结果来看，草原上的羊是黑色的”。更多详情参考 [Bootstrapping (statistics) - Wikipedia](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))
+   它用这种方法得到了样本分布，依据这个样本的离散程度情况来说明“基于草原上现有羊群的样本结果来看，草原上的羊是黑色的”。更多详情参考 [Bootstrapping (statistics) - Wikipedia](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)) 和 [bootstrap - Explaining to laypeople why bootstrapping works - Cross Validated](https://stats.stackexchange.com/questions/26088/explaining-to-laypeople-why-bootstrapping-works) 在计算统计量方面，可以使用 [最大似然估计](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) [矩估计方法](https://onlinecourses.science.psu.edu/stat414/node/193) 和 [贝叶斯估计](https://en.wikipedia.org/wiki/Bayes_estimator) 
 
 5. [3.0 - Hypothesis Testing | Statistics](https://onlinecourses.science.psu.edu/statprogram/node/136/) 
 
